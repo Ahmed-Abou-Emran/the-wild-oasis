@@ -48,7 +48,7 @@ export default function CabinRow({
   discount,
   image,
   onDelete: handleDelete,
-  isLoading,
+  isDeleting,
 }) {
   return (
     <TableRow role="row">
@@ -57,7 +57,7 @@ export default function CabinRow({
       <div>Fits up to {maxCapacity} guests</div>
       <Price>{formatCurrency(regularPrice)}</Price>
       <Discount>{formatCurrency(discount)}</Discount>
-      <button disabled={isLoading} onClick={handleDelete}>
+      <button disabled={isDeleting} onClick={handleDelete}>
         Delete
       </button>
     </TableRow>

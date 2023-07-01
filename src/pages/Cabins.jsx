@@ -19,15 +19,18 @@ function Cabins() {
   });
 
   const queryClient = useQueryClient();
-  const mutation = useMutation(deleteCabin, {
-    onSuccess: () => {
-      toast.success("Cabin deleted successfully");
-      queryClient.invalidateQueries("cabins");
-    },
-    onError: (error) => {
-      toast.error("Error deleting cabin: " + error.message);
-    },
-  });
+  const { mutate: mutateDelete, isLoading: isDeleting } = useMutation(
+    deleteCabin,
+    {
+      onSuccess: () => {
+        toast.success("Cabin deleted successfully");
+        queryClient.invalidateQueries("cabins");
+      },
+      onError: (error) => {
+        toast.error("Error deleting cabin: " + error.message);
+      },
+    }
+  );
 
   return (
     <>
@@ -58,8 +61,8 @@ function Cabins() {
                   discount={discount}
                   description={description}
                   image={image}
-                  onDelete={() => mutation.mutate(id)}
-                  isLoading={mutation.isLoading}
+                  onDelete={() => mutateDelete(id)}
+                  isDeleting={isDeleting}
                 />
               )
             )}

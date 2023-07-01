@@ -23,6 +23,7 @@ const Container = styled.div`
 function CreateCabinForm() {
   const {
     register,
+    reset,
     handleSubmit,
     getValues,
     formState: { errors },
@@ -30,24 +31,21 @@ function CreateCabinForm() {
 
   const [showform, setShowForm] = React.useState(false);
   const queryClient = useQueryClient();
-  const { mutate: mutateAdd } = useMutation({
+
+  const { mutate, isLoading: isCreating } = useMutation({
     mutationFn: addCabin,
     onSuccess: () => {
-      queryClient.invalidateQueries("cabins"),
-        toast.success("Cabin added successfully");
+      toast.success("New cabin successfully created");
+      queryClient.invalidateQueries({ queryKey: ["cabins"] });
+      reset();
     },
-
-    onError: (error) => {
-      toast.error("Error adding cabin to database");
-      console.log(error);
-    },
+    onError: (err) => toast.error(err.message),
   });
 
-  const onSubmit = (data) => {
+  function onSubmit(data) {
     console.log(data);
-    mutateAdd({ ...data, image: data.image[0] });
-    setShowForm(false);
-  };
+    mutate({ ...data, image: data.image[0] });
+  }
 
   return (
     <Container>
