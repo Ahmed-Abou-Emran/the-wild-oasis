@@ -1,26 +1,25 @@
 import styled from "styled-components";
-import Logo from "./Logo.jsx";
-import MainNav from "./MainNav.jsx";
+import Logo from "./Logo";
+import MainNav from "./MainNav";
 
-const StyledSideBar = styled.div`
-  width: 26rem;
-  height: 100vh;
-  background-color: #f5f5f5;
-  padding: 1.6rem;
-  grid-row: 1/ -1;
+const StyledSidebar = styled.aside`
+  background-color: var(--color-grey-0);
+  padding: 3.2rem 2.4rem;
+  border-right: 1px solid var(--color-grey-100);
+
+  grid-row: 1 / -1;
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
-  position: sticky;
-  top: 0;
-  z-index: 1;
+  gap: 3.2rem;
 `;
 
-export default function SideBar() {
+function Sidebar() {
   return (
-    <StyledSideBar>
+    <StyledSidebar>
       <Logo />
       <MainNav />
-    </StyledSideBar>
+    </StyledSidebar>
   );
 }
+
+export default Sidebar;
