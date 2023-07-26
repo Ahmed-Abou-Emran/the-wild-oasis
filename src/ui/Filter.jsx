@@ -1,5 +1,3 @@
-import { set } from "date-fns";
-import React from "react";
 import { useSearchParams } from "react-router-dom";
 import styled, { css } from "styled-components";
 
@@ -37,22 +35,25 @@ const FilterButton = styled.button`
   }
 `;
 
-function Filter({ options, filter }) {
+function Filter({ filterField, options }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  let currentFilter = searchParams.get(filter) || "all";
-  const handleFilter = (value) => {
-    searchParams.set(filter, value);
+  const currentFilter = searchParams.get(filterField) || options.at(0).value;
+
+  function handleClick(value) {
+    searchParams.set(filterField, value);
+    if (searchParams.get("page")) searchParams.set("page", 1);
+
     setSearchParams(searchParams);
-  };
+  }
 
   return (
     <StyledFilter>
-      {options.map((option, index) => (
+      {options.map((option) => (
         <FilterButton
-          key={index}
+          key={option.value}
+          onClick={() => handleClick(option.value)}
           active={option.value === currentFilter}
-          // disabled={option.value === currentFilter}
-          onClick={() => handleFilter(option.value)}
+          disabled={option.value === currentFilter}
         >
           {option.label}
         </FilterButton>
