@@ -39,6 +39,8 @@ Welcome to The Wild Oasis, an Hotel Management System that empowers administrato
 
 - **Supabase**: An open-source alternative to Firebase that provides real-time and secure database services.
 
+- **React-Query**: A Powerful asynchronous state management for TS/JS, React, Solid, Vue and Svelte 
+
 - **Styled-Components**: A CSS-in-JS library for styling React components.
 
 - **React-Hot-Toast**: A toast notification library for React applications.
