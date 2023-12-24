@@ -57,7 +57,7 @@ function CheckinBooking() {
         bookingId,
         breakfast: {
           hasBreakfast: true,
-          extrasPrice: optionalBreakfastPrice,
+          extraPrice: optionalBreakfastPrice,
           totalPrice: totalPrice + optionalBreakfastPrice,
         },
       });
